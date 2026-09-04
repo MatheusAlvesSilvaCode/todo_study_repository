@@ -1,0 +1,36 @@
+name: todo-learning-study
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: always
+    container_name: todo-learning-db
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: todolearning_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata_todo:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8088:8080"
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: always
+    container_name: todo-learning-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"   # Comunicação das aplicações (Spring Boot)
+      - "15672:15672" # Painel gráfico de gerenciamento (Navegador)
+volumes:
+  pgdata_todo:
+
