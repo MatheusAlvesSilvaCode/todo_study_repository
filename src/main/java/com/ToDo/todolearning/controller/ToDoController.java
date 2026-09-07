@@ -1,25 +1,40 @@
 package com.ToDo.todolearning.controller;
 
 import com.ToDo.todolearning.dto.CreateTaskDTO;
+import com.ToDo.todolearning.dto.CreateUserDTO;
 import com.ToDo.todolearning.entity.TaskEntity;
+import com.ToDo.todolearning.entity.UserEntity;
 import com.ToDo.todolearning.repository.TaskRepository;
 import com.ToDo.todolearning.service.TaskService;
-import org.springframework.http.ResponseEntity;
+import com.ToDo.todolearning.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("todo/api/task")
+@RequestMapping("todo/api")
 public class ToDoController {
 
+    @Autowired
     private TaskService taskService;
 
-    @GetMapping("/{id}")
-    public String getTask(@PathVariable String id){
-        return "Buscando tarefa com ID: " + id;
-    };
+    @Autowired
+    private UserService userService;
+    // TODO: Organizar urls de acordo com boas praticas
+    @PostMapping("/createtask")
+    public TaskEntity createTask(@RequestBody CreateTaskDTO dto) {
+        return this.taskService.createTask(dto);
+    }
 
-    @PostMapping
-    public CreateTaskDTO createTask(@RequestBody CreateTaskDTO dto){
-       return dto;
+    @PostMapping("/user")
+    public UserEntity createUser(@RequestBody CreateUserDTO dto) { return  this.userService.CreateUser(dto);}
+
+    @GetMapping
+    public List<TaskEntity> getAllTasks() {
+    return this.taskService.findAll();
     }
 }
+

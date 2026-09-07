@@ -35,6 +35,17 @@ public class TaskEntity {
     @Column(name = "updated_at", insertable = false, updatable = false)
     private OffsetDateTime updatedAt;
 
+    @Column(name = "description")
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public UUID getId() {
         return id;
     }

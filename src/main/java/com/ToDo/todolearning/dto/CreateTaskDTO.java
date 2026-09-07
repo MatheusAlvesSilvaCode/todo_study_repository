@@ -5,6 +5,7 @@ import java.util.UUID;
 
 public record CreateTaskDTO(
         UUID userId,
+        String status,
         String title,
         String description,
         OffsetDateTime deadline,
