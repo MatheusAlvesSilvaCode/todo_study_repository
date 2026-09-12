@@ -4,6 +4,7 @@ import com.ToDo.todolearning.dto.CreateTaskDTO;
 import com.ToDo.todolearning.entity.TaskEntity;
 import com.ToDo.todolearning.repository.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +29,13 @@ public class TaskService {
        task.setDeadline(dto.deadline());
        task.setDescription(dto.description());
        task = this.taskRepository.saveAndFlush(task);
+       log.info("Task created successfully. Title: {} | User ID: {}", task.getTitle(), task.getUserId());
        return task;
     }
 
     public List<TaskEntity> findAll() {
+        List<TaskEntity> taskslist = this.taskRepository.findAll();
+        log.info("Task find all :: {}", taskslist.size() );
         return this.taskRepository.findAll();
     }
 }

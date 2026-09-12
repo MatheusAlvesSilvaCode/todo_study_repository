@@ -22,8 +22,8 @@ public class UserService {
         user.setPhoneNumber(userDTO.phone());
         user.setNotifyBySms(userDTO.notifyBySms());
         user.setNotifyByEmail(userDTO.notifyByEmail());
-        user = this.userRepository.save(user);// TODO: Criar logs de infos
+        user = this.userRepository.save(user);
+        log.info("User created successfully :: name {} :: User ID :: {}", user.getName(), user.getId());
         return user;
     }
-
 }

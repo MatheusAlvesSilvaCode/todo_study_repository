@@ -32,8 +32,8 @@ public class ToDoController {
     @PostMapping("/user")
     public UserEntity createUser(@RequestBody CreateUserDTO dto) { return  this.userService.CreateUser(dto);}
 
-    @GetMapping
-    public List<TaskEntity> getAllTasks() {
+    @GetMapping("/listall")
+    public List<TaskEntity> findAll() {
     return this.taskService.findAll();
     }
 }

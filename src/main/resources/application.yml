@@ -1,3 +1,7 @@
+logging:
+  level:
+    org.hibernate.orm.connections.pooling: WARN
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5434/todolearning_db

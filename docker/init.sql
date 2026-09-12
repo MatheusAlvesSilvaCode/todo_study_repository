@@ -1,5 +1,5 @@
 -- =============================================================================
--- SCRIPT DE INICIALIZAÇÃO COMPLETO - TODO LEARNING
+-- SCRIPT DE INICIALIZAÇÃO
 -- Inclui: Usuários, Categorias, Tags, Tarefas, Subtarefas, Anexos, Auditoria e Notificações
 -- =============================================================================
 
