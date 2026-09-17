@@ -1,6 +1,6 @@
 package com.ToDo.todolearning.service;
 
-import com.ToDo.todolearning.dto.CreateUserDTO;
+import com.ToDo.todolearning.dto.UserDTO;
 import com.ToDo.todolearning.entity.UserEntity;
 import com.ToDo.todolearning.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;}
 
-    public UserEntity CreateUser(CreateUserDTO userDTO) {
+    public UserEntity CreateUser(UserDTO userDTO) {
 
         UserEntity user = new UserEntity();
         user.setName(userDTO.name());

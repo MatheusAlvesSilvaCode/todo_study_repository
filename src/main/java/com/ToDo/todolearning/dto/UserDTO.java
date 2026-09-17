@@ -1,8 +1,7 @@
 package com.ToDo.todolearning.dto;
 
-import java.util.UUID;
 //TODO: Verificar nomes de classes e etc.. talvez mudar
-public record CreateUserDTO(
+public record UserDTO(
         String name,
         String email,
         String phone,
