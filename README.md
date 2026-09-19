@@ -1,8 +1,8 @@
 # Task Tracker API - roadmap.sh
 
-Backend REST API developed in Java with Spring Boot for task tracking and task list management, based on the Task Tracker challenge from roadmap.sh.
+https://roadmap.sh/projects/task-tracker
 
-This application allows you to create, update, complete, delete, and filter tasks based on their execution status, as well as associate tasks with users.
+Backend REST API developed in Java with Spring Boot for task tracking and task list management, based on the Task Tracker challenge from roadmap.sh.
 
 ---
 
