@@ -43,7 +43,6 @@ public class ToDoController {
         return null;
     }
 
-    //TODO: CONCERTAR ISSO, ESTÁ DANDO ERRO NO POSTMAN DE 500. FALTA CONCERTAR O PARAMETRO.
     @PostMapping("/alldone")
     public List<TaskEntity> listAllDoneTasks() {
         return this.taskService.listAllDoneTasks();
