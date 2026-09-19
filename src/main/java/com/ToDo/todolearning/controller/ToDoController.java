@@ -45,8 +45,18 @@ public class ToDoController {
 
     //TODO: CONCERTAR ISSO, ESTÁ DANDO ERRO NO POSTMAN DE 500. FALTA CONCERTAR O PARAMETRO.
     @PostMapping("/alldone")
-    public TaskEntity listAllDoneTasks(@PathVariable UUID id, @RequestBody TaskDTO dto) {
-        return (TaskEntity) this.taskService.listAllDoneTasks();
+    public List<TaskEntity> listAllDoneTasks() {
+        return this.taskService.listAllDoneTasks();
+    }
+
+    @PostMapping("/allpending")
+    public List<TaskEntity> listAllPendingTasks() {
+        return this.taskService.listAllProgressTasks();
+    }
+
+    @PostMapping("/allcancelated")
+    public List<TaskEntity> listAllCancelledTasks() {
+        return this.taskService.listAllNotDoneTasks();
     }
 
     @PostMapping("/user")

@@ -85,8 +85,20 @@ public class TaskService {
     }
 
     public List<TaskEntity> listAllDoneTasks(){
+        log.info("Listing all done tasks :: {}", this.taskRepository.findAll());
         return this.taskRepository.findByStatus(statusTaskEnum.COMPLETED.name());
     }
+
+    public List<TaskEntity> listAllProgressTasks(){
+        log.info("Listing all done tasks :: {}", this.taskRepository.findAll());
+        return this.taskRepository.findByStatus(statusTaskEnum.PENDING.name());
+    }
+
+    public List<TaskEntity> listAllNotDoneTasks(){
+        log.info("Listing all done tasks :: {}", this.taskRepository.findAll());
+        return this.taskRepository.findByStatus(statusTaskEnum.CANCELLED.name());
+    }
+
 
     public List<TaskEntity> findAll() {
         List<TaskEntity> taskslist = this.taskRepository.findAll();
