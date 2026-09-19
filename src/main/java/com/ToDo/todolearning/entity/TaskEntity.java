@@ -1,5 +1,6 @@
 package com.ToDo.todolearning.entity;
 
+import com.ToDo.todolearning.enums.statusTaskEnum;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -7,6 +8,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "tb_tasks")
 public class TaskEntity {
+
+    @Enumerated(EnumType.STRING)
+    private statusTaskEnum statusTaskEnum;
+
     @Id
     @GeneratedValue
     private UUID id;

@@ -2,10 +2,12 @@ package com.ToDo.todolearning.service;
 
 import com.ToDo.todolearning.dto.TaskDTO;
 import com.ToDo.todolearning.entity.TaskEntity;
+import com.ToDo.todolearning.enums.statusTaskEnum;
 import com.ToDo.todolearning.repository.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +17,7 @@ public class TaskService {
 
     TaskRepository taskRepository;
 
+
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
@@ -23,7 +26,6 @@ public class TaskService {
        TaskEntity task = new TaskEntity();
        task.setStatus(dto.status());
        task.setTitle(dto.title());
-       task.setDescription(dto.status());
        task.setUserId(dto.userId());
        task.setPriority(dto.priority());
        task.setDeadline(dto.deadline());
@@ -59,6 +61,31 @@ public class TaskService {
         }
         this.findAll();
         return this.taskRepository.save(existingTask);
+    }
+
+    public TaskEntity taskDone(UUID id) {
+        TaskEntity existingTask = this.taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found ID: " + id));
+
+        if(!statusTaskEnum.COMPLETED.name().equals(existingTask.getStatus())) {
+            existingTask.setStatus(String.valueOf(statusTaskEnum.COMPLETED));
+            log.info("Task status updated to COMPLETED. ID: {}", id);
+            return this.taskRepository.save(existingTask);
+        }
+        log.info("Task ID: {} is already COMPLETED. No update needed.", id);
+        return existingTask;
+    }
+
+    public void deleteTask(UUID id) {
+        TaskEntity existingTask = this.taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found ID: " + id));
+
+        this.taskRepository.delete(existingTask);
+        log.info("Task deleted successfully. ID: {} Name Task :: {} ", id, existingTask.getTitle());
+    }
+
+    public List<TaskEntity> listAllDoneTasks(){
+        return this.taskRepository.findByStatus(statusTaskEnum.COMPLETED.name());
     }
 
     public List<TaskEntity> findAll() {

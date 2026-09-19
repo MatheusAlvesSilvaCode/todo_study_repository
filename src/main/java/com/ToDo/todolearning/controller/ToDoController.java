@@ -32,6 +32,23 @@ public class ToDoController {
         return this.taskService.updateTask(id, dto);
     }
 
+    @PostMapping("/taskdone/{id}")
+    public TaskEntity taskDone(@PathVariable UUID id) {
+        return this.taskService.taskDone(id);
+    }
+
+    @PostMapping("/deletetask/{id}")
+    public TaskEntity deleteTask(@PathVariable UUID id) {
+        this.taskService.deleteTask(id);
+        return null;
+    }
+
+    //TODO: CONCERTAR ISSO, ESTÁ DANDO ERRO NO POSTMAN DE 500. FALTA CONCERTAR O PARAMETRO.
+    @PostMapping("/alldone")
+    public TaskEntity listAllDoneTasks(@PathVariable UUID id, @RequestBody TaskDTO dto) {
+        return (TaskEntity) this.taskService.listAllDoneTasks();
+    }
+
     @PostMapping("/user")
     public UserEntity createUser(@RequestBody UserDTO dto) { return  this.userService.CreateUser(dto);}
 
